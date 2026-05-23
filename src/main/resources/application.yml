@@ -1,0 +1,34 @@
+micronaut:
+  application:
+    name: knowledge-service
+  server:
+    port: 8088
+    context-path: /v1/knowledge
+  metrics:
+    enabled: true
+    export:
+      prometheus:
+        enabled: true
+
+endpoints:
+  health:
+    enabled: true
+    sensitive: false
+  metrics:
+    enabled: false
+  prometheus:
+    enabled: true
+    sensitive: false
+    path: metrics
+
+datasources:
+  default:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:knowledge}
+    username: ${DB_USER:knowledge}
+    password: ${DB_PASSWORD:knowledge}
+    driver-class-name: org.postgresql.Driver
+
+flyway:
+  datasources:
+    default:
+      enabled: true
